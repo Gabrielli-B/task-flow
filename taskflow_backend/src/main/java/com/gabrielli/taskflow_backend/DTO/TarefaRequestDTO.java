@@ -1,4 +1,5 @@
 package com.gabrielli.taskflow_backend.DTO;
 
-public class TarefaRequestDTO {
+public record TarefaRequestDTO(String nome, String descricao, Boolean concluida){
+
 }
