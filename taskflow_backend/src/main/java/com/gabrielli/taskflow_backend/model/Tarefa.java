@@ -5,10 +5,12 @@ import com.gabrielli.taskflow_backend.DTO.TarefaRequestDTO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 @Table(name = "tarefas")
 @Entity
 @Getter
+@Setter
 @EqualsAndHashCode(of = "id")
 
 public class Tarefa {
