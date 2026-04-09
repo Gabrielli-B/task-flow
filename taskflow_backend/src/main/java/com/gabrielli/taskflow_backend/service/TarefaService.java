@@ -40,9 +40,31 @@ public class TarefaService {
 
     public List<TarefaResponseDTO> listarTodasTarefas(){
         if(tarefaRepository.count() == 0){
-            throw new ListaTarefaVaziaException();
+            throw new ListaTarefaVaziaException("Lista vazia!");
         }
         return tarefaRepository.findAll()
+                .stream()
+                .map(TarefaResponseDTO::new)
+                .toList();
+    }
+
+    public List<TarefaResponseDTO> listarTarefasConcluidas() {
+        List<Tarefa> tarefas = tarefaRepository.findByConcluidaTrue();
+        if(tarefas.isEmpty()){
+            throw new ListaTarefaVaziaException("Não há tarefas concluídas!");
+        }
+        return tarefas
+                .stream()
+                .map(TarefaResponseDTO::new)
+                .toList();
+    }
+
+    public List<TarefaResponseDTO> listarTarefasPendentes(){
+        List<Tarefa> tarefas = tarefaRepository.findByConcluidaFalse();
+        if(tarefas.isEmpty()){
+            throw new ListaTarefaVaziaException("Não há tarefas pendentes!");
+        }
+        return tarefas
                 .stream()
                 .map(TarefaResponseDTO::new)
                 .toList();
