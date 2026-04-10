@@ -34,6 +34,11 @@ public class TarefaController {
     @GetMapping
     public List<TarefaResponseDTO> listarTodasTarefas(){return tarefaService.listarTodasTarefas();}
 
-    //implementar controllers de busca de tarefas pendentes e concluidas
+    @Operation(summary = "Listar todas as tarefa concluídas")
+    @GetMapping("/tarefasConcluidas")
+    public List<TarefaResponseDTO> listarTarefasConcluidas(){return tarefaService.listarTarefasConcluidas();}
 
+    @Operation(summary = "Listar todas as tarefa pendentes")
+    @GetMapping("/tarefasPendentes")
+    public List<TarefaResponseDTO> listarTarefasPendentes(){return tarefaService.listarTarefasPendentes();}
 }
