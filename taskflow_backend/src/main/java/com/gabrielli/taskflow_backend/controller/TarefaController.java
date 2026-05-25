@@ -4,12 +4,15 @@ import com.gabrielli.taskflow_backend.DTO.TarefaRequestDTO;
 import com.gabrielli.taskflow_backend.DTO.TarefaResponseDTO;
 import com.gabrielli.taskflow_backend.service.TarefaService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("/tarefas")
 
 public class TarefaController {
     private final TarefaService tarefaService;
@@ -20,31 +23,57 @@ public class TarefaController {
 
     @Operation(summary = "Cadastrar tarefa")
     @PostMapping
-    public TarefaResponseDTO criarTarefa(@RequestBody TarefaRequestDTO tarefaRequest){return tarefaService.criarTarefa(tarefaRequest);}
+    public ResponseEntity<TarefaResponseDTO> criarTarefa(@RequestBody TarefaRequestDTO tarefaRequest){
+        TarefaResponseDTO tarefa = tarefaService.criarTarefa(tarefaRequest);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(tarefa);
+    }
 
     @Operation(summary = "Deletar tarefa")
     @DeleteMapping({"/{id}"})
-    public void deletarTarefa(@PathVariable Long id){tarefaService.deletarTarefa(id);}
+    public ResponseEntity<Void> deletarTarefa(@PathVariable Long id){
+        tarefaService.deletarTarefa(id);
+
+        return ResponseEntity.noContent().build();
+    }
 
     @Operation(summary = "Mudar status tarefa")
     @PatchMapping({"/{id}"})
-    public void mudarEstadoTarefa(@PathVariable Long id, @RequestBody Boolean status){tarefaService.mudarEstadoTarefa(id,status);}
+    public  ResponseEntity<Void> mudarEstadoTarefa(@PathVariable Long id, @RequestBody Boolean status){
+        tarefaService.mudarEstadoTarefa(id, status);
+
+        return ResponseEntity.ok().build();
+    }
 
     @Operation(summary = "Listar todas as tarefa")
     @GetMapping
-    public List<TarefaResponseDTO> listarTodasTarefas(){return tarefaService.listarTodasTarefas();}
+    public ResponseEntity<List<TarefaResponseDTO>> listarTodasTarefas(){
+        return ResponseEntity.ok(
+                tarefaService.listarTodasTarefas()
+        );
+    }
 
     @Operation(summary = "Listar todas as tarefa concluídas")
     @GetMapping("/tarefasConcluidas")
-    public List<TarefaResponseDTO> listarTarefasConcluidas(){return tarefaService.listarTarefasConcluidas();}
+    public ResponseEntity<List<TarefaResponseDTO>> listarTarefasConcluidas(){
+        return ResponseEntity.ok(
+                tarefaService.listarTarefasConcluidas()
+        );
+    }
 
     @Operation(summary = "Listar todas as tarefa pendentes")
     @GetMapping("/tarefasPendentes")
-    public List<TarefaResponseDTO> listarTarefasPendentes(){return tarefaService.listarTarefasPendentes();}
+    public ResponseEntity<List<TarefaResponseDTO>> listarTarefasPendentes(){
+        return ResponseEntity.ok(
+                tarefaService.listarTarefasPendentes()
+        );
+    }
 
     @Operation(summary = "Atualizar tarefa")
     @PutMapping("/{id}")
-    public TarefaResponseDTO atualizarTarefa(@PathVariable Long id, @RequestBody TarefaRequestDTO tarefaRequest){
-        return tarefaService.atualizarTarefa(id, tarefaRequest);
+    public ResponseEntity<TarefaResponseDTO> atualizarTarefa(@PathVariable Long id, @RequestBody TarefaRequestDTO tarefaRequest){
+        TarefaResponseDTO tarefaAtualizada = tarefaService.atualizarTarefa(id, tarefaRequest);
+        return ResponseEntity.ok(tarefaAtualizada);
     }
 }
