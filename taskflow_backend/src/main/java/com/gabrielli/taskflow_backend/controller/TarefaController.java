@@ -41,4 +41,10 @@ public class TarefaController {
     @Operation(summary = "Listar todas as tarefa pendentes")
     @GetMapping("/tarefasPendentes")
     public List<TarefaResponseDTO> listarTarefasPendentes(){return tarefaService.listarTarefasPendentes();}
+
+    @Operation(summary = "Atualizar tarefa")
+    @PutMapping("/{id}")
+    public TarefaResponseDTO atualizarTarefa(@PathVariable Long id, @RequestBody TarefaRequestDTO tarefaRequest){
+        return tarefaService.atualizarTarefa(id, tarefaRequest);
+    }
 }

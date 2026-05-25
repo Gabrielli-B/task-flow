@@ -69,4 +69,17 @@ public class TarefaService {
                 .map(TarefaResponseDTO::new)
                 .toList();
     }
+
+    public TarefaResponseDTO atualizarTarefa(Long id, TarefaRequestDTO tarefaRequest){
+
+        Tarefa tarefa = tarefaRepository.findById(id)
+                .orElseThrow(() -> new IdNaoExisteException(id));
+
+        tarefa.setNomeTarefa(tarefaRequest.nome());
+        tarefa.setDescricao(tarefaRequest.descricao());
+
+        tarefaRepository.save(tarefa);
+
+        return new TarefaResponseDTO(tarefa);
+    }
 }
