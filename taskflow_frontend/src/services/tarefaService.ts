@@ -5,4 +5,37 @@ export async function listarTarefas(){
     return response.data;
 }
 
+/*export async function criarTarefa(
+    nome:string, 
+    descricao:string
+){
+    const response = await api.post("/tarefas",{ 
+        nome, 
+        descricao 
+    });
+    return response.data;
+}
 
+export async function excluirTarefa(id: number) {
+    await api.delete(`/tarefas/${id}`);
+}
+
+export async function atualizarTarefa(
+    id: number,
+    nome: string,
+    descricao: string
+) {
+    const response = await api.put(`/tarefas/${id}`, {
+        nome,
+        descricao
+    });
+
+    return response.data;
+}
+
+export async function mudarStatus(
+    id: number,
+    status: boolean
+) {
+    await api.patch(`/tarefas/${id}`, status);
+}*/
