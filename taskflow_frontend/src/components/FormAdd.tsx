@@ -1,3 +1,4 @@
+import "./FormAdd.css";
 
 type FormAddProps = {
     onFechar: () => void;
@@ -9,6 +10,7 @@ export function FormAdd({onFechar}: FormAddProps) {
             <h2>Nova Tarefa</h2>
 
             <form>
+                <label>Nome</label>
                 <input type="text"
                        placeholder = "Nome"/>
 
@@ -16,7 +18,7 @@ export function FormAdd({onFechar}: FormAddProps) {
                 <label>Descrição</label>
                 <textarea placeholder="Descreva a Terefa..."></textarea>
 
-                <button type="submit">Salvar</button>
+                <button className="btn-salvar" type="submit">Salvar</button>
 
                 <button type="button" onClick={onFechar}>
                     Cancelar

@@ -1,0 +1,76 @@
+.form-add {
+    width: 400px;
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.form-add h2 {
+    margin-bottom: 25px;
+    color: #334155;
+    font-size: 28px;
+    text-align: center;
+}
+
+.form-add form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-add label {
+    color: #475569;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.form-add input,
+.form-add textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    transition: .2s;
+}
+
+.form-add textarea {
+    resize: none;
+    min-height: 120px;
+}
+
+.form-add input:focus,
+.form-add textarea:focus {
+    border-color: #4F7CAC;
+    box-shadow: 0 0 0 3px rgba(79,124,172,0.2);
+}
+
+.form-add button {
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+.btn-salvar {
+    background-color: #4F7CAC;
+    color: white;
+}
+
+.btn-salvar:hover {
+    background-color: #3B648B;
+}
+
+.form-add button[type="button"] {
+    background-color: #E2E8F0;
+    color: #334155;
+}
+
+.form-add button[type="button"]:hover {
+    background-color: #CBD5E1;
+}
